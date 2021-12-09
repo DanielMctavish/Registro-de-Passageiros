@@ -1,0 +1,41 @@
+<style>
+    #detalhes-geral {
+        margin-top: 170px;
+        background-color: rgba(79, 162, 177, 0.856);
+        padding: 35px;
+        text-align: justify;
+        border-radius: 15px;
+    }
+
+    #passgObs {
+        width: 800px;
+        background-color: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin: 40px;
+        box-shadow: rgba(59, 59, 59, .4) 2px 2px 5px;
+    }
+</style>
+
+
+{{>_navbar}}
+<div id="detalhes-geral">
+    {{#each inforPass}}
+    <ul>
+        <li>
+
+            <strong>Nome: </strong>{{nome}} <br>
+            <strong>Categoria:</strong>{{categoria}} <br>
+            <strong>Contrato:</strong> {{numContrato}} <br>
+            <form action="/passageiros/obs" method="POST">
+                <input type="hidden" name="idobs" value={{_id}}>
+                <button>olhar observação</button>
+            </form>
+        </li>
+    </ul>
+    {{/each}}
+    <br>
+</div>
+{{#if obsOn}}
+<p id="passgObs">{{obs}}</p>
+{{/if}}

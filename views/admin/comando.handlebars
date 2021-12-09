@@ -1,0 +1,132 @@
+<style>
+    #cmd {
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 2s;
+    }
+
+    #inside_cmd {
+        position: absolute;
+        margin-top: 720px;
+    }
+
+    #inName {
+        margin-top: 30px;
+    }
+
+    #inPass {
+        margin-top: 30px;
+    }
+
+    #inBtn {
+        margin-top: 30px;
+        color: rgb(43, 43, 43);
+        font-weight: bolder;
+        border: solid 1px black;
+    }
+
+    #btn-add-trip {
+        width: 350px;
+        color: rgb(104, 104, 104);
+        font-size: 15pt;
+        margin-top: 50px;
+    }
+
+    #btn-add-trip:hover {
+        background-color: rgba(17, 231, 149, 0.5);
+    }
+
+    #trip-list {
+        display: inline-flex;
+        flex-direction: row;
+        margin-top: 50px;
+    }
+
+    #bg_comand {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: .3;
+        height: 1080px;
+        transition: 2s;
+    }
+
+    #cmd_login {
+        opacity: 0;
+        transition: 2s;
+    }
+
+
+    @media (max-width: 930px) {
+        #cmd {
+            margin-top: 920px;
+
+        }
+         #inside_cmd{
+             margin-top: 0px;
+         }
+
+
+    }
+</style>
+
+<img src="./bg/tripulante_01.png" id="bg_comand">
+{{>_navbar}}
+<div id="cmd">
+    <div id="inside_cmd">
+
+        {{#if validateCom}}
+
+        <div id="login-card">
+            <form action="/comando/login" method="POST" id="cmd_login">
+                <h1>COMANDO</h1>
+                Nome: <input type="text" id="inName" placeholder="nome" name="loginCom"> <br>
+                Senha: <input type="password" id="inPass" placeholder="senha" name="pass"> <br>
+                <button id="inBtn">entrar</button>
+            </form>
+        </div>
+
+        {{/if}}
+        <br><br>
+        {{#if _validate}}
+        você está logado
+        <form action="/logoff" method="POST">
+            <button>deslogar</button>
+        </form>
+        <br>
+        <hr>
+        <form action="/addtrip" method="POST"><button id="btn-add-trip">adicionar novo tripulante</button></form><br>
+        <form action="/triplist"><button id="btn-add-trip">Lista de tripulantes</button></form>
+        <br>
+        {{/if}}
+
+        {{#if validateTrip}}
+        {{>_formtrip}}
+        {{/if}}
+        {{#if _error}}
+        dados incorretos, por favor tente novamente.
+        {{/if}}
+        {{>_listTrip}}
+    </div>
+</div>
+
+
+
+<script>
+    let bg_comand = document.getElementById("bg_comand");
+    setTimeout(() => {
+        bg_comand.style.height = '1150px';
+        bg_comand.style.top = '-100px'
+        bg_comand.style.opacity = '.1'
+        bg_comand.style.transition = '7s';
+
+        let cmdLogin = document.getElementById("cmd_login");
+        //cmdLogin.style.transition = '5s';
+        cmdLogin.style.opacity = '1';
+    }, 500)
+
+
+</script>

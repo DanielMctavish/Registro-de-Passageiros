@@ -1,0 +1,26 @@
+<style>
+    #formtrip{
+        color: rgb(129, 129, 129);
+        font-size: 14pt;
+    }
+    #formtrip input{
+        width: 200px;
+        margin-top: 40px;
+        color: rgb(133, 133, 133);
+        font-size: 12pt;
+    }
+    #msgAdd{
+        color: rgb(14, 255, 86);
+    }
+</style>
+<form action="/back" method="GET"><button>voltar</button></form></a>
+<h3 id="msgAdd"> {{msgAdd}}</h3>
+<form action="/addtrip/add" method="POST" id="formtrip">
+    Data de nascimento: <input type="date" name="dataNasc" id=""><br>
+    Nome: <input type="text" placeholder="Nome do tripulante" name="nomeTrip"> <br>
+    Cargo: <input type="text" placeholder="cargo especialização" name="cargoTrip"><br>
+    Senha <input type="password" name="pass" id="" placeholder="nova senha"><br>
+    <input type="submit" value="Adicionar"> 
+</form>
+<br><br>
+

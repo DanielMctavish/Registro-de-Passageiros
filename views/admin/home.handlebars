@@ -1,0 +1,41 @@
+<style>
+    #home {
+        display: flex;
+        justify-content: center;
+        margin-top: 150px;
+    }
+
+    #backgrounds-home {
+        position: absolute;
+        height: 1080px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        transition: 3s;
+    }
+
+    @media all and (max-width: 930px) {
+        #home {
+            margin-top: 350px;
+        }
+    }
+</style>
+<img src="./bg/navio01.png" id="backgrounds-home">
+<div id="home">
+    {{>_navbar}}
+    {{>_boasVindas}}
+</div>
+
+<script>
+    let bgHome = document.getElementById("backgrounds-home");
+    setInterval(() => {
+        bgHome.style.opacity = ".4";
+        bgHome.style.height = '1150px';
+        bgHome.style.transition = '5s';
+        setInterval(() => {
+            bgHome.style.transition = '3s';
+            bgHome.style.opacity = ".1";
+        }, 5000);
+    }, 1000);
+
+</script>

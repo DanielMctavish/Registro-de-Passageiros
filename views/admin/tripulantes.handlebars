@@ -1,0 +1,56 @@
+<style>
+    #telaGeralTrip {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #trip-screen {
+        position: absolute;
+        margin-top: 550px;
+        justify-content: center;
+    }
+
+    #empty-error {
+        color: red;
+        background-color: rgba(243, 243, 243, 0.8);
+        width: auto;
+    }
+    #bg_02_trip{
+        position: absolute;
+        opacity: .2;
+        top: 0;
+        left: 0;
+    }
+
+    @media (max-width: 930px) {
+        #trip-screen {
+            margin-top: 1100px;
+        }
+    }
+</style>
+
+<div id="telaGeralTrip">
+    <img src="./bg/trip_02.png" id="bg_02_trip">
+      {{>_navbar}}
+    <div id="trip-screen">
+        <h2>Se você foi adicionado pelo comando</h2>
+        <h4>acesse suas credenciais</h4>
+        <form action="/trip/login" method="POST">
+            nome: <br>
+            <input type="text" name="nomeTrip" placeholder="nome" required> <br>
+            senha: <br>
+            <input type="password" name="passTrip" placeholder="senha" required> <br> <br>
+            <button>entrar</button>
+        </form>
+        <hr>
+        {{#if loginErr}}
+        <p id="empty-error">usuário não encontrado</p>
+        {{/if}}
+        {{#if passErr}}
+        <p id="empty-error">senha incorreta!</p>
+        {{/if}}
+
+    </div>
+</div>

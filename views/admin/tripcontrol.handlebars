@@ -1,0 +1,119 @@
+<style>
+    #tripcontrol {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #container {
+        display: flex;
+        width: 1100px;
+    }
+
+    
+
+    #painel {
+        width: 340px;
+        height: 600px;
+        overflow-y: scroll;
+        background-color: rgba(177, 177, 177, 0.1);
+        margin: 50px;
+        border: solid 2px white;
+        border-radius: 15px;
+        color: white;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    #form-passengers {
+        width: 700px;
+        height: 500px;
+        background-color: rgba(100, 165, 240, 0.1);
+        margin: 50px;
+        border: solid 2px white;
+        border-radius: 15px;
+        transition: 1.4s;
+    }
+
+    #textArea {
+        width: 200px;
+        height: 80px;
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #passengerlist {
+        background-color: rgba(40, 43, 71, 0.7);
+        margin: 7px;
+        border-radius: 5px;
+        list-style: none;
+    }
+
+    #btt-delpa {
+        background-color: red;
+        width: 60px;
+        margin: 15px;
+        color: white;
+        border-radius: 5px;
+    }
+    @media (max-width: 930px) {
+        #container {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #form-passengers{
+            width: 400px;
+            transition: 1s;
+        }
+    }
+</style>
+<div id="tripcontrol">
+    <h2>você está logado</h2>
+    <h3>bem vindo(a) {{userName}}!</h3>
+    <form action="/trip/triplogoff" method="POST"><button>sair</button></form>
+    <hr>
+    <div id="container">
+        <form action="/trip/addpassenger/{{userName}}" method="POST" id="form-passengers">
+            <h2>Adicione um novo passageiro</h2>
+            nome: <input type="text" name="nome" required> <br><br>
+            email: <input type="text" name="email" required>
+            <hr>
+            <h4>selecione a categoria do passageiro</h4>
+            <input type="radio" name="pasCateg" id="inBasic" value="basic">
+            <label for="inBasic">basic</label>
+            <input type="radio" name="pasCateg" id="inNormal" value="normal">
+            <label for="inNormal">normal</label>
+            <input type="radio" name="pasCateg" id="inPremium" value="premium">
+            <label for="inPremium">premium</label>
+            <input type="radio" name="pasCateg" id="inVIP" value="VIP">
+            <label for="inVIP">VIP</label> <br> <br>
+            <hr>
+            <input type="text" placeholder="número do contrato" name="numContrato" required> <br>
+            <textarea name="obs" id="textArea">observação</textarea> <br>
+            <input type="hidden" name='nameAdd' value={{userName}}>
+            <button id="addPass">adicionar passageiro</button>
+            <p>{{contractError}}</p>
+        </form>
+        
+        <div id="painel">
+            {{#each infoPassageiro}}
+            <ul id="passengerlist">
+                <li>
+                    nome: {{nome}} <br>
+                    email: {{email}} <br>
+                    categoria: {{categoria}} <br>
+                    Nº contrato: {{numContrato}} <br>
+                    adicionado por: {{add}}
+                </li>
+                <form action="/trip/delpassenger/{{_id}}" method="GET"><button id="btt-delpa">excluir</button></form>
+            </ul>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<style>
+    #trip-list {
+        margin-top: 20px;
+    }
+
+    #trip-list li {
+        border-top: solid 1px white;
+        background-color: rgb(92, 140, 155);
+        opacity: 0;
+        transition: 1s;
+        width: 100%;
+        margin-top: 15px;
+        width: 200px;
+        border-radius: 5px;
+        list-style: none;
+        position: relative;
+        left: -25px;
+    }
+
+    #btn-del {
+        background-color: rgb(240, 75, 75);
+        color: white;
+        font-weight: bolder;
+        margin-top: 20px;
+    }
+    #geral{
+        margin-top: 70px;
+    }
+
+    @media (max-width: 930px) {
+        #geral{
+            margin-top: 700px;
+        }
+    }
+</style>
+<div id="geral">
+    {{#if newtrip}}
+    <h3>TRIPULANTES OFICIAIS</h3> <br>
+    <a href="/back"> <button>voltar</button> </a> <br>
+    <div id="lista-geral">
+        {{#each tripulantes}}
+        <ul id="trip-list">
+            <li id="tripLi">
+                Nascimento: {{date}} <br>
+                Nome: {{nome}} <br>
+                Cargo: {{cargo}} <br>
+                Senha: {{pass}} <br>
+                <form action="deltrip/{{_id}}" method="GET">
+                    <button id="btn-del">deletar</button>
+                </form>
+            </li>
+        </ul>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>
+<script src="./scripts/listTripScript.js"></script>
