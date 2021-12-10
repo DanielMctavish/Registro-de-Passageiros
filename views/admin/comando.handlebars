@@ -1,6 +1,6 @@
 <style>
     #cmd {
-        margin-top: 0px;
+        margin-top: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -8,10 +8,6 @@
         transition: 2s;
     }
 
-    #inside_cmd {
-        position: absolute;
-        margin-top: 720px;
-    }
 
     #inName {
         margin-top: 30px;
@@ -61,23 +57,21 @@
 
 
     @media (max-width: 930px) {
-        #cmd {
-            margin-top: 920px;
-
+        #bg_comand {
+            display: none;
         }
-         #inside_cmd{
-             margin-top: 0px;
-         }
-
-
+        #logado{
+            margin-top: 300px;
+        }
+        #login-card{
+            margin-top: 300px;
+        }
     }
 </style>
 
 <img src="./bg/tripulante_01.png" id="bg_comand">
 {{>_navbar}}
 <div id="cmd">
-    <div id="inside_cmd">
-
         {{#if validateCom}}
 
         <div id="login-card">
@@ -92,15 +86,18 @@
         {{/if}}
         <br><br>
         {{#if _validate}}
-        você está logado
-        <form action="/logoff" method="POST">
-            <button>deslogar</button>
-        </form>
-        <br>
-        <hr>
-        <form action="/addtrip" method="POST"><button id="btn-add-trip">adicionar novo tripulante</button></form><br>
-        <form action="/triplist"><button id="btn-add-trip">Lista de tripulantes</button></form>
-        <br>
+        <div id="logado">
+            você está logado
+            <form action="/logoff" method="POST">
+                <button>deslogar</button>
+            </form>
+            <br>
+            <hr>
+            <form action="/addtrip" method="POST"><button id="btn-add-trip">adicionar novo tripulante</button></form>
+            <br>
+            <form action="/triplist"><button id="btn-add-trip">Lista de tripulantes</button></form>
+            <br>
+        </div>
         {{/if}}
 
         {{#if validateTrip}}
@@ -110,7 +107,7 @@
         dados incorretos, por favor tente novamente.
         {{/if}}
         {{>_listTrip}}
-    </div>
+    
 </div>
 
 
